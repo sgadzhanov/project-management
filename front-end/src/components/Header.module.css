@@ -1,0 +1,52 @@
+.main__header {
+  background-color: cornflowerblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  color: azure;
+
+  @media (max-width: 500px) {
+    padding: 1.5rem .5rem;
+  }
+}
+
+.main__header_list {
+  display: flex;
+  gap: 1.5rem;
+  list-style-type: none;
+}
+.main__header_list .logout__button {
+  color: #333;
+}
+
+.nav__links {
+  display: flex;
+  gap: 1.5rem;
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+
+.main__header_list li {
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.main__header_list li:hover {
+  color: rgb(211, 214, 255);
+}
+
+.login__button {
+  background-color: #367eff;
+  padding: .5rem 3.5rem;
+  border-radius: .5rem;
+  border: 1px solid transparent;
+  transition: all .5s;
+}
+
+.login__button:hover {
+  background-color: #367cff94;
+}

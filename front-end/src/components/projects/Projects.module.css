@@ -1,0 +1,35 @@
+.projects__container {
+  margin: 2rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.projects__list {
+  padding: 2rem 5rem;
+  display: grid;
+  align-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 50%;
+
+  @media (max-width: 800px) {
+    width: 80%;
+  }
+}

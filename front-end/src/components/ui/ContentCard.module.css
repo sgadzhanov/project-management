@@ -1,0 +1,68 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.projectName {
+  font-size: 1.5em;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.description {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.details p {
+  margin: 4px 0;
+  font-size: 0.9em;
+  color: #444;
+}
+
+.cardActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cardActions button {
+  min-width: 7.5rem;
+}
+
+.editButton {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.editButton:hover {
+  background-color: #45a049;
+}
+
+.editButton:disabled,
+.editButton[disabled] {
+  background-color: #999999bc;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #da190b;
+}

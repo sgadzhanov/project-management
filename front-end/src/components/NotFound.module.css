@@ -1,0 +1,40 @@
+.container {
+  min-height: calc(100vh - 166px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  color: #343a40;
+  text-align: center;
+}
+
+.title {
+  font-size: 6rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+link {
+  textDecoration: none;
+}
+
+button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+buttonHover {
+  background-color: #0056b3;
+}

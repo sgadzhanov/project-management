@@ -1,0 +1,152 @@
+.expertDetailsContainer {
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-height: calc(100vh - 166px);
+}
+
+.expertDetailsContainer h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.expert__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.expertCard {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.expertCard h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #2980b9;
+}
+
+.expertCard p {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #555;
+}
+
+.expertProjects {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.projectsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.projectCard {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.projectCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.projectCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #16a085;
+}
+
+.projectCard p {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #555;
+}
+
+.loader {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-top: 50px;
+}
+
+.error {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #e74c3c;
+  margin-top: 50px;
+}
+
+form {
+  display: flex;
+  gap: .5rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+
+.buttons button {
+  width: 7.5rem;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+}
+
+.form__control {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.form__control input {
+  margin-top: -.2rem;
+}
+
+.expert__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  @media (max-width: 750px) {
+    flex-direction: column;
+  }
+}
+
+.expert__type {
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+}

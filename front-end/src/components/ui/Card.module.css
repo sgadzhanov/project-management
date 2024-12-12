@@ -1,0 +1,13 @@
+.card__wrapper {
+  padding: 2rem 5rem;
+  border-radius: .5rem;
+  background-color: cornflowerblue;
+  width: 100%;
+  transition: all .2s;
+  color: azure;
+}
+
+.card__wrapper:hover {
+  background-color: rgb(139, 179, 255);
+  cursor: pointer;
+}

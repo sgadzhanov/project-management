@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Expert {
+  expert_id       Int           @id @default(autoincrement())
+  expert_type     String        @db.Char(1)
+  expert_name     String?       @db.VarChar(50)
+  expert_surname  String?       @db.VarChar(50)
+  expert_lastname String?       @db.VarChar(50)
+  ProjectTasks    ProjectTask[]
+}
+
+model Project {
+  project_id           Int           @id @default(autoincrement())
+  project_name         String
+  project_description  String?
+  project_client       String
+  project_begin        DateTime
+  project_end          DateTime
+  project_status       Int
+  project_pay_per_hour Float?
+  ProjectStatus        ProjectStatus @relation(fields: [project_status], references: [pstatus_id])
+  tasks                ProjectTask[]
+
+  @@index([project_status], map: "Project_project_status_fkey")
+}
+
+model ProjectTask {
+  task_id           Int        @id @default(autoincrement())
+  project_id        Int
+  expert_id         Int
+  task_name         String
+  task_description  String?
+  task_deliverables String?
+  task_begin        DateTime
+  task_end          DateTime
+  task_priority     String     @db.VarChar(50)
+  task_status       Int
+  task_ready        Int?
+  task_hours        Int?
+  expert            Expert     @relation(fields: [expert_id], references: [expert_id])
+  project           Project?   @relation(fields: [project_id], references: [project_id])
+  status            TaskStatus @relation(fields: [task_status], references: [status_id])
+
+  @@index([expert_id], map: "ProjectTask_expert_id_fkey")
+  @@index([project_id], map: "ProjectTask_project_id_fkey")
+  @@index([task_status], map: "ProjectTask_task_status_fkey")
+}
+
+model ProjectStatus {
+  pstatus_id   Int       @id @default(autoincrement())
+  pstatus_name String
+  Project      Project[]
+}
+
+model TaskStatus {
+  status_id   Int           @id @default(autoincrement())
+  status_name String
+  tasks       ProjectTask[]
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String
+  password String
+}
