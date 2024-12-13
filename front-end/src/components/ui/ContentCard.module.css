@@ -37,11 +37,11 @@
 .cardActions {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: .4rem;
 }
 
 .cardActions button {
-  min-width: 7.5rem;
+  min-width: 6.5rem;
 }
 
 .editButton {

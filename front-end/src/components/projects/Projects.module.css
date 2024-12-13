@@ -21,6 +21,14 @@
   gap: 1rem;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+  }
+}
+
+.buttons button {
+  width: 12rem;
 }
 
 .searchForm {

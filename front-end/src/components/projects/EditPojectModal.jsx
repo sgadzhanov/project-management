@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Modal from 'react-modal'
 import styles from './AddProject.module.css'
 import customModalStyles from './EditProjectModal.module.css'
+import { MODAL_STYLES } from '../ui/modal-styles'
 
 const TASK_STATUSES = {
   1: 'Планирана',
@@ -13,23 +14,6 @@ const TASK_STATUSES = {
   4: 'В изпълнение',
   5: 'Отказана',
   6: 'Изпълнена',
-}
-
-const modalStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '70%',
-    height: '85%',
-    overflow: 'scroll',
-    scrollbarColor: 'rgb(175, 201, 230) rgb(212, 227, 255)',
-    scrollbarWidth: 'thin',
-    overflowX: 'hidden',
-  },
 }
 
 Modal.setAppElement('#root')
@@ -218,20 +202,19 @@ const EditPojectModal = ({
       <ClipLoader size={50} color="gray" />
     </div>
   ) : (
-    <div className={''}>
+    <div>
       <Modal
         isOpen={!isLoading}
         onRequestClose={onClose}
         style={{
           content: {
-            ...modalStyles.content,
+            ...MODAL_STYLES.content,
             height: isEditedSuccessfully ? '40%' : '80%',
             width: isEditedSuccessfully ? '40%' : '60%',
             display: isEditedSuccessfully ? 'flex' : 'block',
             justifyContent: 'center',
             alignItems: 'center',
             gap: '1rem',
-
           }
         }}
       >

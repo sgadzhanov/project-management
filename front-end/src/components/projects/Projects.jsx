@@ -1,64 +1,64 @@
-import { useEffect, useState } from 'react';
-import styles from './Projects.module.css';
-import ContentCard from '../ui/ContentCard';
-import AddProject from './AddProject';
-import { ClipLoader } from 'react-spinners';
+import { useEffect, useState } from 'react'
+import styles from './Projects.module.css'
+import ContentCard from '../ui/ContentCard'
+import AddProject from './AddProject'
+import { ClipLoader } from 'react-spinners'
 
 export default function Projects() {
-  const [projects, setProjects] = useState([]);
-  const [experts, setExperts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [toggleForm, setToggleForm] = useState(false);
-  const [projectsChanged, setProjectsChanged] = useState(false);
+  const [projects, setProjects] = useState([])
+  const [experts, setExperts] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [toggleForm, setToggleForm] = useState(false)
+  const [projectsChanged, setProjectsChanged] = useState(false)
 
-  const [searchId, setSearchId] = useState('');
-  const [searchName, setSearchName] = useState('');
-  const [searchStartDate, setSearchStartDate] = useState('');
-  const [searchEndDate, setSearchEndDate] = useState('');
-  const [searchStatus, setSearchStatus] = useState('');
-  const [toggleFilters, setToggleFilters] = useState(false);
+  const [searchId, setSearchId] = useState('')
+  const [searchName, setSearchName] = useState('')
+  const [searchStartDate, setSearchStartDate] = useState('')
+  const [searchEndDate, setSearchEndDate] = useState('')
+  const [searchStatus, setSearchStatus] = useState('')
+  const [toggleFilters, setToggleFilters] = useState(false)
 
   const clients = projects.reduce((acc, project) => {
     if (!acc.includes(project.project_client)) {
-      acc.push(project.project_client);
+      acc.push(project.project_client)
     }
-    return acc;
-  }, []);
+    return acc
+  }, [])
 
   useEffect(() => {
     async function fetchProjects() {
       try {
-        setIsLoading(true);
-        const response = await fetch('http://localhost:5000/api/projects');
-        const projects = await response.json();
+        setIsLoading(true)
+        const response = await fetch('http://localhost:5000/api/projects')
+        const projects = await response.json()
 
-        setProjects(projects.projects);
+        setProjects(projects.projects)
       } catch (e) {
-        console.log('There was an error fetching projects', e);
+        console.log('There was an error fetching projects', e)
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
     }
 
     async function fetchExperts() {
       try {
-        setIsLoading(true);
-        const response = await fetch('http://localhost:5000/api/experts');
-        const experts = await response.json();
+        setIsLoading(true)
+        const response = await fetch('http://localhost:5000/api/experts')
+        const experts = await response.json()
 
-        setExperts(experts.experts);
+        setExperts(experts.experts)
       } catch (e) {
-        console.log('There was an error fetching experts', e);
+        console.log('There was an error fetching experts', e)
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
     }
-    fetchProjects();
-    fetchExperts();
-  }, [projectsChanged]);
+    fetchProjects()
+    fetchExperts()
+  }, [projectsChanged])
 
   function handleCloseForm() {
-    setToggleForm(false);
+    setToggleForm(false)
   }
 
   const filteredProjects = projects.filter((project) => {
@@ -68,18 +68,14 @@ export default function Projects() {
       (!searchStartDate || new Date(project.project_begin) >= new Date(searchStartDate)) &&
       (!searchEndDate || new Date(project.project_end) <= new Date(searchEndDate)) &&
       (!searchStatus || project.project_status.toLowerCase().includes(searchStatus.toLowerCase()))
-    );
-  });
-
-  if (isLoading) {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
-        <ClipLoader />
-      </div>
     )
-  }
+  })
 
-  return (
+  return isLoading ? (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+      <ClipLoader />
+    </div>
+  ) : (
     <div className={styles.projects__container}>
       {toggleForm ? (
         <AddProject
@@ -136,7 +132,7 @@ export default function Projects() {
       <ul className={styles.projects__list}>
         {filteredProjects.map((project) => (
           <ContentCard
-            key={project.project_id}
+            key={project.project_id + project.project_name}
             id={project.project_id}
             name={project.project_name}
             description={project.project_description}
@@ -151,5 +147,5 @@ export default function Projects() {
         ))}
       </ul>
     </div>
-  );
+  )
 }

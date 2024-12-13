@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
-export async function findAllProjects(req, res) {
+export async function findAllProjects(_req, res) {
   const projects = await prisma.project.findMany({
     include: {
       ProjectStatus: true,
@@ -283,6 +283,12 @@ export async function findProjectsRelatedToExpert(expertId) {
 export async function deleteProject(req, res) {
   try {
     const { id } = req.params
+
+    await prisma.projectTask.deleteMany({
+      where: {
+        project_id: Number(id),
+      },
+    })
 
     const project = await prisma.project.delete({
       where: {
