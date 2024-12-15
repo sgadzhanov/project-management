@@ -23,6 +23,9 @@ export default function Experts() {
   const [isAddingNewExpert, setIsAddingNewExpert] = useState(false)
 
   useEffect(() => {
+    if (experts.length > 0 && !isAddedSuccessfully) {
+      return
+    }
     async function fetchExperts() {
       try {
         setIsLoading(true)
@@ -38,7 +41,7 @@ export default function Experts() {
     }
 
     fetchExperts()
-  }, [])
+  }, [isAddedSuccessfully])
 
   if (isLoading) {
     return (

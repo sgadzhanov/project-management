@@ -15,6 +15,7 @@ export default function ContentCard({
   endsAt,
   status,
   setProjects,
+  onChange,
 }) {
   const navigate = useNavigate()
 
@@ -36,7 +37,9 @@ export default function ContentCard({
       setIsEditing(false)
       return
     }
+
     setEditedProject(project)
+    onChange(true)
   }
 
   const onDelete = async () => {
@@ -61,19 +64,13 @@ export default function ContentCard({
     }
   }
 
-  const handleModalClose = useCallback(() => {
-    console.log('Closing');
-
-    setIsEditing(false)
-  }, []);
-
   return (
     <>
       {isEditing ? (
         <EditPojectModal
           key={id}
           id={id}
-          onClose={handleModalClose}
+          onClose={() => setIsEditing(false)}
           handleEdit={onFinishEdit}
           name={editedProject ? editedProject.name : name}
           description={editedProject ? editedProject.description : description}
@@ -123,4 +120,5 @@ ContentCard.propTypes = {
   endsAt: propTypes.string,
   status: propTypes.string,
   setProjects: propTypes.func,
+  onChange: propTypes.func,
 }

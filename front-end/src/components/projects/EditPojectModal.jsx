@@ -31,8 +31,6 @@ const EditPojectModal = ({
   endsAt,
   status,
 }) => {
-  console.log('rendered', id)
-
   const [editedProject, setEditedProject] = useState({
     name,
     description,
@@ -175,10 +173,10 @@ const EditPojectModal = ({
 
   function getAvailableStatuses(currentProjectStatus) {
     if (currentProjectStatus === 'Нов') {
-      return statuses.filter((status) => ['В изпълнение', 'Прекратен', 'Замразен'].includes(status.pstatus_name))
+      return statuses.filter((status) => ['Нов', 'В изпълнение', 'Прекратен', 'Замразен'].includes(status.pstatus_name))
     }
     if (currentProjectStatus === 'В изпълнение') {
-      return statuses.filter((status) => ['Изпълнен', 'Прекратен', 'Замразен'].includes(status.pstatus_name))
+      return statuses.filter((status) => ['В изпълнение', 'Изпълнен', 'Прекратен', 'Замразен'].includes(status.pstatus_name))
     }
     if (currentProjectStatus === 'Прекратен' || currentProjectStatus === 'Замразен') {
       return statuses.filter((status) => status.pstatus_name === 'В изпълнение')
@@ -215,6 +213,7 @@ const EditPojectModal = ({
             justifyContent: 'center',
             alignItems: 'center',
             gap: '1rem',
+            overflow: isEditedSuccessfully ? 'hidden' : 'auto',
           }
         }}
       >
@@ -322,10 +321,14 @@ const EditPojectModal = ({
                 />
               </div>
               <div className={styles.form__control}>
-                <label htmlFor='endsAt'>Статус</label>
-                <select name='' id='' value={editedProject.status} onChange={(e) => {
-                  setEditedProject({ ...editedProject, status: e.target.value })
-                }}>
+                <label htmlFor='status'>Статус</label>
+                <select
+                  disabled={getAvailableStatuses(status).length === 0}
+                  style={{ cursor: getAvailableStatuses(status).length === 0 ? 'not-allowed' : 'auto' }}
+                  value={editedProject.status}
+                  onChange={(e) => setEditedProject({ ...editedProject, status: e.target.value })}
+                  name="status"
+                >
                   {getAvailableStatuses(status).map((status) => (
                     <option key={status.pstatus_id} value={status.pstatus_id}>
                       {status.pstatus_name}
@@ -333,8 +336,8 @@ const EditPojectModal = ({
                   ))}
                 </select>
               </div>
-              <div className={customModalStyles.all_tasks}>
-                {projectTasks.map((task) => (
+              {projectTasks.length > 0 && projectTasks.map((task) => (
+                <div className={styles.all_tasks} key={task.task_id}>
                   <div className={customModalStyles.task} key={task.task_id}>
                     <div
                       style={{ marginBottom: '10px' }}
@@ -470,8 +473,8 @@ const EditPojectModal = ({
                       )}
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
               <div className={customModalStyles.buttons}>
                 <button disabled={isLoading} type='submit'>{isLoading ? 'Обработва се' : 'Потвърди'}</button>
                 <button disabled={isLoading} type='button' onClick={onClose}>Отказ</button>

@@ -37,6 +37,19 @@
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
+.formGroup {
+  text-align: left;
+}
+
+.form {
+  width: 60%;
+  margin: auto;
+
+  @media (max-width: 800px) {
+    width: 85%;
+  }
+}
+
 .expertCard:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -79,6 +92,7 @@
 .buttons {
   display: flex;
   gap: 1rem;
+  margin: .7rem 0;
 }
 
 .container {

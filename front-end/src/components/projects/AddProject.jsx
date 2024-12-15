@@ -165,6 +165,7 @@ export default function AddProject({ onChange, onClose, clients, experts, onExpe
         <div className={styles.form__control}>
           <label htmlFor='perHour'>Часова Ставка</label>
           <input
+            required
             type='number'
             name='perHour'
             min='1'

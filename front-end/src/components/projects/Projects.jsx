@@ -143,6 +143,7 @@ export default function Projects() {
             endsAt={project.project_end}
             status={project.project_status}
             setProjects={setProjects}
+            onChange={setProjectsChanged}
           />
         ))}
       </ul>
