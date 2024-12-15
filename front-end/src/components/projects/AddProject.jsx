@@ -79,6 +79,7 @@ export default function AddProject({ onChange, onClose, clients, experts, onExpe
       console.log(e)
     } finally {
       setIsLoading(false)
+      onClose()
     }
   }
 
