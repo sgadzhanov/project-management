@@ -43,7 +43,7 @@ export async function findProjectById(req, res) {
 
 export async function createProject(req, res) {
   try {
-    const { name, description, client, beginsAt, endsAt, tasks } = req.body
+    const { name, description, client, beginsAt, endsAt, tasks, perHour } = req.body
 
     const initialProjectStatus = await prisma.projectStatus.findFirst({
       where: {
@@ -58,6 +58,7 @@ export async function createProject(req, res) {
         project_begin: new Date(beginsAt),
         project_end: new Date(endsAt),
         project_client: client,
+        project_pay_per_hour: +perHour,
         ProjectStatus: {
           connect: { pstatus_id: initialProjectStatus.pstatus_id },
         },
