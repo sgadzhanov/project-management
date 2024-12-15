@@ -1,10 +1,12 @@
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Header() {
-  const user = localStorage.getItem('user')
   const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const user = localStorage.getItem('user')
 
   function renderNavLinks() {
     if (user) {
@@ -18,7 +20,10 @@ export default function Header() {
               <li>Експерти</li>
             </Link>
           </div>
-          <Link onClick={() => localStorage.removeItem('user')}>
+          <Link onClick={() => {
+            localStorage.removeItem('user')
+            navigate('/')
+          }}>
             <li className={styles.logout__button}>Изход</li>
           </Link>
         </ul>
